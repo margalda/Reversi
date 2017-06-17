@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1086</x>
+      <y>750</y>
+      <w>126</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>fileHandling::AbortException
+--
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1086</x>
+      <y>798</y>
+      <w>132</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>fileHandling::GiveUpException
+--
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1068</x>
+      <y>672</y>
+      <w>156</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>fileHandling::WriteReadFile
+--
+--
++saveCurrentGame(Game game): void
++loadGameToString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1086</x>
+      <y>840</y>
+      <w>132</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>/fileHandling::WriteToFileBase/
+--
+--
+#promptFile(): File
+#writeInner(FileWriter f): void
+#reportError(Exception e): void
+#reportGiveUp(Exception e): void
++writeToFile(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>732</x>
+      <y>456</y>
+      <w>288</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>gameManagers::BoardActions
+--
+-_x, _y: int
+-_array: int[][]
+-_buttons: JButton[][]
+-_game: Game
+--
++BoardActions(int x, int y, int[][] array, JButton[][] buttons, Game game): ctor
++actionPerformed(ActionEvent e): void
++mouseEntered(MouseEvent arg0): void
++paintBoard(int[][] move): void
++mouseExited(MouseEvent arg0): void
++mouseClicked(MouseEvent arg0): void
++mousePressed(MouseEvent arg0): void
++mouseReleased(MouseEvent arg0): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>294</x>
+      <y>456</y>
+      <w>420</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>gameManagers::Game
+--
+-_board: Board
+-_player1, _player2, _currPlayer: Player
+-_statusBar: JPanel
+-_backButton: JButton
+-_currMoves: LinkedList&lt;int[][]&gt;
+-_timer, _wait: Timer
+-_im: ImageIcon[]
+-_frame: int
+-_gameEnded: boolean
+-_changedDiscs: LinkedList&lt;int[]&gt;
+--
++Game(Player player1, Player player2, Player currPlayer, int rows, int cols, int[][] array, MainWindow menu): ctor
++start(): void
++nextTurn(): void
+-playCPU(): void
+-playBestMove(LinkedList&lt;int[][]&gt; possibleMoves): void
++updateBoard(int[][] move, int x, int y): void
+-setAllPossibleMoves(): void
+-isValidMove(int x, int y, int addToRow, int addToCol): boolean
++updateStatusBar(): void
++getBackButton(): JButton
++checkForWinner(): boolean
++paintComponent(Graphics g): void
++getCurrMoves(): LinkedList&lt;int[][]&gt;
++getCurrPlayer(): Player
++getPlayer1(): Player
++getPlayer2(): Player
++getBoard(): Board
++getGameEnded(): boolean
++setBoard(Board board): void
++getChangedDiscs(): LinkedList&lt;int[]&gt;
++actionPerformed(ActionEvent e): void
++setDefaultColor(JButton[][] buttons): void
+-calculateDistance(int i, int j): int
++startTimer(): void
++setPlayer1Name(String name): void
++setPlayer2Name(String name): void
++isThereATimerRunning(): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>6</x>
+      <y>762</y>
+      <w>270</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>misc::Player
+--
+-_score: int
+-_name: String
+-_playerNumber: int
+-_cpuPlayer: boolean
+--
++Player(String name, int number, int score, boolean cpuPlayer): ctor
++getScore(): int
++setScore(int score): void
++getName(): String
++setName(String name): void
++getIsCPU(): boolean
++setIsCPU(boolean isCPU): void
++getPlayerNumber(): int
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>354</x>
+      <y>252</y>
+      <w>264</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>screens::Board
+--
+-_array: int[][]
+-_buttons: JButton[][]
+-_whosTurn: int
+--
++Board(int rows, int cols, int whosTurn, Game game, int[][] array): ctor
+-drawDiscs(): void
+-placeFirstDiscs(int rows, int cols): void
++getArray(): int[][]
++actionPerformed(ActionEvent e): void
++getWhosTurn(): int
++setWhosTurn(int whosTurn): void
++countScore(Player player): int
++getButtons(): JButton[][]
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>36</x>
+      <y>24</y>
+      <w>1128</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>screens::MainWindow
+--
+-_rows = 8, _cols = 8: int
+-_player1, _player2: Player
+-_game: Game
+-gameExists = false: boolean
+-_settings: Settings
+-_menu: Menu
+--
++MainWindow(): ctor
++main(String[] args): void
+-newSettings(int rows, int cols, String player1Name, String player2Name, boolean isPlayer1CPU, boolean isPlayer2CPU): void
++actionPerformed(ActionEvent e): void
+-createNewGame(): void
+-loadGame(String savedString): void
++mouseClicked(MouseEvent e): void
++mouseEntered(MouseEvent e): void
++mouseExited(MouseEvent e): void
++mousePressed(MouseEvent e): void
++mouseReleased(MouseEvent e): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>42</x>
+      <y>246</y>
+      <w>162</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>screens::Menu
+--
+-_buttons: JButton[]
+--
++Menu(MainWindow mainWindow): ctor
++getButtons(): JButton[]
++enableResumeSave(): void
++unableResumeSave(): void
++paintComponent(Graphics g): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>768</x>
+      <y>246</y>
+      <w>402</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>screens::Settings
+--
+~_okButton: JButton
+~_panel: JPanel
+--
++Settings(MainWindow menu, String player1Name, String player2Name, int rows, int cols): ctor
++getOKButton(): JButton
++getComponents(): Component[]
++paintComponent(Graphics g): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1062</x>
+      <y>636</y>
+      <w>180</w>
+      <h>294</h>
+    </coordinates>
+    <panel_attributes>fileHandling
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>288</x>
+      <y>426</y>
+      <w>756</w>
+      <h>456</h>
+    </coordinates>
+    <panel_attributes>gameManagers
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>36</x>
+      <y>6</y>
+      <w>1140</w>
+      <h>414</h>
+    </coordinates>
+    <panel_attributes>screens
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>744</y>
+      <w>282</w>
+      <h>186</h>
+    </coordinates>
+    <panel_attributes>misc
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>222</y>
+      <w>42</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+
+1</panel_attributes>
+    <additional_attributes>50.0;10.0;50.0;120.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>318</x>
+      <y>222</y>
+      <w>48</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+
+1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0;60.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>222</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+
+1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;30.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>606</x>
+      <y>402</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+1</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>444</x>
+      <y>270</y>
+      <w>318</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+                                Each Button Uses &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0;510.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1158</x>
+      <y>36</y>
+      <w>60</w>
+      <h>648</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= 1
+m2= 1
+   Uses &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;80.0;20.0;80.0;1060.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>12</x>
+      <y>24</y>
+      <w>132</w>
+      <h>750</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=2</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0;10.0;1150.0;200.0;1150.0;200.0;1230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>480</y>
+      <w>108</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=3</panel_attributes>
+    <additional_attributes>160.0;10.0;10.0;10.0;10.0;460.0</additional_attributes>
+  </element>
+</diagram>

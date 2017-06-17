@@ -1,0 +1,11 @@
+currTurn: 1
+Player_1: 3 Points: false
+Computer: 3 Points: false
+rows: 6
+cols: 6
+0,0,0,0,0,0
+0,0,-1,1,0,0
+0,0,-1,1,0,0
+0,0,-1,1,0,0
+0,0,0,0,0,0
+0,0,0,0,0,0
